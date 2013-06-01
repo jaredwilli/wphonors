@@ -1,0 +1,13 @@
+.iLikeThis { color:#fff; display:inline; width:203px; height:23px; text-indent:-99999px; }
+
+.iLikeThis .counter a { background:url(vote-sprite.png) no-repeat left top; position: absolute; top:5px; height:23px; width:203px; cursor:pointer;  text-indent:-99999px; }
+.iLikeThis .counter a:hover { background-position:0 -23px; }
+
+span.counter { text-indent:-99999px; }
+/*
+.iLikeThis .counter a.image { background:url(add.jpg) no-repeat; }
+*/
+
+.iLikeThis .loading { background: url(loader.gif) center center no-repeat; }
+
+.inactive { color:#fff; background:url(vote-sprite.png) no-repeat left bottom; cursor:pointer; position:absolute; top:5px; height:23px; width:203px; font-weight:bold; text-indent:-99999px; }

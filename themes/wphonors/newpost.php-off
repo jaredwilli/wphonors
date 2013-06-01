@@ -1,0 +1,114 @@
+	<script type="text/javascript" charset="utf-8">
+		jQuery(document).ready(function($) {
+			jQuery('#post_type').val($('#post-types a.selected').attr('id'));
+			$('#post-types a').click(function(e) {
+				jQuery('.post-input').hide();
+				$('#post-types a').removeClass('selected');
+				jQuery(this).addClass('selected');
+				if($(this).attr('id') == 'site') {
+					jQuery('#title').val("<?php _e('Title'); ?>");
+				} else {
+					jQuery('#title').val('');
+				}
+				jQuery('#postbox-type-' + $(this).attr('id')).show();
+				jQuery('#post_type').val($(this).attr('id'));
+				return false;
+			});
+		});
+(function($){$.fn.TextAreaExpander=function(minHeight,maxHeight){var hCheck=!($.browser.msie||$.browser.opera);function ResizeTextarea(e){e=e.target||e;var vlen=e.value.length,ewidth=e.offsetWidth;if(vlen!=e.valLength||ewidth!=e.boxWidth){if(hCheck&&(vlen<e.valLength||ewidth!=e.boxWidth))e.style.height="0px";var h=Math.max(e.expandMin,Math.min(e.scrollHeight,e.expandMax));e.style.overflow=(e.scrollHeight>h?"auto":"hidden");e.style.height=(h - 5)+"px";e.valLength=vlen;e.boxWidth=ewidth}return true};this.each(function(){if(this.nodeName.toLowerCase()!="textarea")return;var p=this.className.match(/expand(\d+)\-*(\d+)*/i);this.expandMin=minHeight||(p?parseInt('0'+p[1],10):0);this.expandMax=maxHeight||(p?parseInt('0'+p[2],10):99999);ResizeTextarea(this);if(!this.Initialized){this.Initialized=true;$(this).css('padding-bottom', 0).css('padding-top', 5);$(this).bind("keyup",ResizeTextarea).bind("focus",ResizeTextarea);}});return this}})(jQuery);
+// initialize all expanding textareas
+jQuery(document).ready(function() {
+	jQuery("textarea[class*=expand]").TextAreaExpander();
+});
+</script>
+
+<div id="postbox">
+		<ul id="post-types">
+			<li><a id="site"<?php if ( $_GET['p'] == 'site' || !isset($_GET['p']) ) : ?> class="selected"<?php endif; ?> href="<?php echo site_url( '?p=site' ) ?>" title="Site">Site</a></li>
+			
+			<li><a id="plugin"<?php if ( $_GET['p'] == 'plugin' ) : ?> class="selected"<?php endif; ?> href="<?php echo site_url( '?p=plugin' ) ?>" title="Plugin">Plugin</a></li>
+			
+			<li><a id="theme"<?php if ( $_GET['p'] == 'theme' ) : ?> class="selected"<?php endif; ?> href="<?php echo site_url( '?p=theme' ) ?>" title="Theme">Theme</a></li>
+			
+			<li><a id="person"<?php if ( $_GET['p'] == 'person' ) : ?> class="selected"<?php endif; ?> href="<?php echo site_url( '?p=person' ) ?>" title="Person">Person</a></li>
+		</ul>
+
+		<div class="inputarea">
+			<form id="new_post" name="new_post" method="post" action="<?php echo site_url(); ?>/">
+				
+			<?php if ( 'site' == wph_get_posting_type() ) : ?>
+				<div id="postbox-type-site">
+					<label for="title">Title:</label>
+					<input type="text" name="title" id="title" tabindex="1" size="30" value="" class="required" />
+					<label for="siteurl">Url:</label>
+					<input value="" name="siteurl" id="siteurl" tabindex="2" size="30" onkeyup="siteValue(value)" class="required" />
+					<div class="fr" id="mshot"></div>					
+
+					<label for="description">Description:</label>
+					<textarea class="expand70-200 required" name="description" id="description" tabindex="4" rows="3" cols="45"></textarea>
+					<?php wp_dropdown_categories( 'show_option_none=- -&tab_index=5&exclude=1,4,5,6,7,8,9,10,11,12,17,18,19,20,21&taxonomy=category&hide_empty=0' ); ?>
+				</div>
+
+
+			<?php elseif( 'plugin' == wph_get_posting_type() ) : ?>					
+				<div id="postbox-type-plugin">
+					<label for="title">Title:</label>
+					<input type="text" name="title" id="title" tabindex="1" size="30" value="" class="required" />
+					<label for="pluginurl">Plugin Url:</label>
+					<input name="pluginurl" id="pluginurl" tabindex="2" size="30" value="" class="required" />
+
+					<label for="description">Description:</label>
+					<textarea class="expand70-200 required" name="description" id="description" tabindex="4" rows="3" cols="45"></textarea>
+					<?php wp_dropdown_categories( 'show_option_none=- -&tab_index=5&exclude=1,4,5,6,7,8,11,12,13,14,15,16,17,18,19,20,21&taxonomy=category&hide_empty=0' ); ?>
+				</div>
+
+
+			<?php elseif( 'theme' == wph_get_posting_type() ) : ?>
+				<div id="postbox-type-theme">
+					<label for="title">Title:</label>
+					<input type="text" name="title" id="title" tabindex="1" size="30" value="" class="required" />
+					<label for="themeurl">Theme Url:</label>
+					<input name="themeurl" id="themeurl" tabindex="2" size="30" value="" class="required" />
+
+					<label for="description">Description:</label>
+					<textarea class="expand70-200 required" name="description" id="description" tabindex="4" rows="3" cols="45"></textarea>
+					<?php wp_dropdown_categories( 'show_option_none=- -&tab_index=5&exclude=1,4,5,6,7,9,10,13,14,15,16,17,18,19,20,21&taxonomy=category&hide_empty=0' ); ?>
+				</div>
+
+				
+			<?php elseif( 'person' == wph_get_posting_type() ) : ?>
+				<div id="postbox-type-person">
+					<label for="title">Name:</label>
+					<input type="text" name="title" id="title" tabindex="1" size="30" value="" class="required" />
+					<label for="twiturl">Twitter:</label>
+					<input name="twiturl" id="twiturl" tabindex="2" size="30" value="" onkeyup="tshotValue(value)" class="required" />
+					<div class="fr" id="tshot"></div>					
+					
+					<label for="personurl">Website:</label>
+					<input name="personurl" id="personurl" tabindex="3" size="30" value="" onkeyup="pshotValue(value)" class="required" />
+					<div class="fr" id="pshot"></div>					
+
+					<label for="description">Description:</label>
+					<textarea class="expand70-200 required" name="description" id="description" tabindex="4" rows="3" cols="45"></textarea>
+					<?php wp_dropdown_categories( 'show_option_none=- -&tab_index=5&exclude=1,4,5,6,7,8,9,10,11,12,13,14,15,16,21&taxonomy=category&hide_empty=0' ); ?>				
+				</div>
+				<?php endif; ?>
+
+
+				<label class="post-error" for="posttext" id="posttext_error"></label>
+
+				<label for="tags">Tags:</label>
+				<input type="text" id="tags" name="tags" tabindex="6" autocomplete="off" value="" class="required" />
+					
+				<input id="submit" type="submit" tabindex="7" value="Submit" />
+				
+				<input type="hidden" name="post_type" id="post_type" value="<?php echo ( isset( $_GET['p'] ) ) ? $_GET['p'] : 'site' ?>" />
+				
+				<span class="progress" id="ajaxActivity"><img src="<?php bloginfo('template_directory');?>/images/loading.gif' ) ) ) ?>" alt="Loading..." /></span>
+				
+				<input type="hidden" name="action" value="post" />
+				<?php wp_nonce_field( 'new-post' ); ?>
+			</form>
+
+		</div>
+</div>
