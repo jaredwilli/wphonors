@@ -15,18 +15,18 @@ Within a month after the site was launched, it **gained 2000+ registered users**
 
 Each of the 4 types of posts that users could submit content were also broken down into their own types of custom taxonomies. Overall, the site was broken up like this:
 
-  * Sites
+  * **Sites**
     * Personal
     * WordPress Related
     * Business
-  * Plugins
+  * **Plugins**
     * Free Plugins
     * Commercial Plugins
-  * Themes
+  * **Themes**
     * Free Themes
     * Commercial Themes
     * Theme Framework
-  * Personalities
+  * **Personalities**
     * Designer
     * Developer
     * Blog Author
