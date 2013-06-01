@@ -68,6 +68,13 @@ So I made a **Prize Inventory custom panel** for the dashboard which only admins
 
 It was a lot of work, but the initial site only took me two weeks to build, largely because of the 8 months previous to making it, I was making a different site similar to Forrst.com but made with **WordPress 3.0 alpha**. I had already made a very similar type of site which I just had to modify the post types to work for WPhonors. It was quite brilliant and a huge success.
 
+
+----------------------------------------------
+
+![Creative Commons License](http://i.creativecommons.org/l/by/3.0/88x31.png "Creative Commons License")
+
+This work is licensed under a [Creative Commons Attribution 3.0 Unported License](http://creativecommons.org/licenses/by/3.0/).
+
 Site developed by: [Jared Williams](http://twitter.com/jaredwilli))
 
 Special thanks to: [Joshua Strebel](http://twitter.com/strebel) and [Page.ly WordPress Hosting](http://page.ly)
